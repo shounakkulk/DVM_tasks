@@ -1,0 +1,137 @@
+<h1>Last.fm Explorer</h1>
+
+<form method="get">
+
+    <label for="country">Country:</label>
+
+    <input type="text" name="country" id="country">
+
+    <input type="submit" value="Search">
+
+    <h2>Artist Search</h2>
+
+    <form method="get">
+
+    <input type="text" name="artist_search" placeholder="Artist name">
+
+    <input type="submit" value="Search">
+
+    <h2>Album Search</h2>
+
+    <form method="get">
+
+    <input type="text" name="album_search" placeholder="Album name">
+
+    <input type="submit" value="Search">
+
+    <h2>Track Search</h2>
+
+    <form method="get">
+
+    <input type="text" name="track_search" placeholder="Track name">
+
+    <input type="submit" value="Search">
+
+    <h2>My Top Artists</h2>
+
+    <form method="get">
+
+        <input type="text" name="username" placeholder="Last.fm username">
+
+        <label for="period">Time period:</label>
+
+        <select name="period" id="period">
+            <option value="7day">Last 7 days</option>
+            <option value="1month">Last month</option>
+            <option value="3month">Last 3 months</option>
+            <option value="6month">Last 6 months</option>
+            <option value="12month">Last 12 months</option>
+            <option value="overall">Overall</option>
+        </select>
+
+        <input type="submit" value="Show Top Artists">
+
+    </form>
+
+
+</form>
+
+</form>
+
+
+{% if error_message %}
+
+    <p>{{ error_message }}</p>
+
+{% elif country %}
+
+    <h2>Top Artists in {{ country }}</h2>
+
+    <ul>
+        {% for artist in artists %}
+            <li>{{ artist.name }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Top Tracks in {{ country }}</h2>
+
+    <ul>
+        {% for track in tracks %}
+            <li>{{ track.name }} - {{ track.artist.name }}</li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
+{% if artist_search %}
+
+    <h2>Artist Search Results</h2>
+
+    <ul>
+        {% for artist in artist_results %}
+            <li>{{ artist.name }}</li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
+{% if album_search %}
+
+    <h2>Album Search Results</h2>
+
+    <ul>
+        {% for album in album_results %}
+            <li>{{ album.name }} - {{ album.artist }}</li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
+{% if track_search %}
+
+    <h2>Track Search Results</h2>
+
+    <ul>
+        {% for track in track_results %}
+            <li>{{ track.name }} - {{ track.artist }}</li>
+        {% endfor %}
+    </ul>
+
+{% endif %}
+
+
+{% if username and period %}
+
+    <h2>Top Artists for {{ username }}</h2>
+
+    <ul>
+
+        {% for artist in top_artists %}
+
+            <li>{{ artist.name }}</li>
+
+        {% endfor %}
+
+    </ul>
+
+{% endif %}
