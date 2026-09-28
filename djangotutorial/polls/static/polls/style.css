@@ -1,0 +1,14 @@
+.question {
+    color: green;
+    font-size: 18px;
+}
+
+.tag {
+
+    background-color: red;
+    color: white;
+    padding: 3px 8px;
+    margin: 4px;
+
+    font-size: 12px;
+}
